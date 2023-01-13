@@ -20,5 +20,15 @@ const settings = {
 
 $.ajax(settings).done(function (response) {
 	console.log(response);
+    displayResults(response)
 });
 })
+
+ function displayResults(response) {
+    var movie = response.Search[0];
+    var movieDiv = $(".movie-card");
+ 
+
+var movieCard = movie.imdbID
+$("h1").text(movieCard).appendto(movieDiv);
+}
