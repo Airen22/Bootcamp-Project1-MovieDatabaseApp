@@ -5,8 +5,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Movie Search App</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
     <link rel='stylesheet' href="./assets/css/reset.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+    
 </head>
 <body>
     <div class="wrapper" style="background-color:darkslateblue; width: 100vw; height: 100vh;">
@@ -23,18 +24,20 @@
         <br> 
         <div class="columns">
             <div class="column is-one-quarter"></div>
-            <input class="column is-half search-input" type="text" placeholder="Search.." style="text-align: center;">
+            <input class="column is-half search-input" type="text" style="text-align: center;">
             <div class="column is-one-quarter"></div>
         </div>
         <br>
         <br> 
         <div class="columns">
             <div class="column is-one-quarter"></div>
-            <input class="column is-half search-btn" type="submit" value="Search">
+            <form class="column is-half">
+            <input class="column is-full search-btn" type="submit" value="Search">
+            </form>
             <div class="column is-one-quarter"></div>
         </div>
     </div>
-
+    
     <script src="./assets/js/script.js"></script>
 </body>
 </html>
