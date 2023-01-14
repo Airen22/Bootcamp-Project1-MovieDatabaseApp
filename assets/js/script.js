@@ -10,7 +10,7 @@ console.log(uriComponent)
 const settings = {
 	"async": true,
 	"crossDomain": true,
-	"url": "https://movie-database-alternative.p.rapidapi.com" + "/?s=" + uriComponent + "&r=json&page=1",
+	"url": "https://movie-database-alternative.p.rapidapi.com" + "/?s=" + uriComponent + "&r=json",
 	"method": "GET",
 	"headers": {
 		"X-RapidAPI-Key": "3336923f29msh6e1151a1f7d3df5p17b980jsna4e22f0b6a1a",
@@ -20,15 +20,54 @@ const settings = {
 
 $.ajax(settings).done(function (response) {
 	console.log(response);
-    displayResults(response)
+    for (var i=0; i<10; i++){
+    var resultsArr = response.Search[i];
+    // console.log(resultsArr.Title); //returns [0] of results
+
+    var cardEl = $('<div>'); 
+    var cardId = resultsArr.imdbID;
+    cardEl.attr("class", "card");
+    cardEl.attr("id", cardId)
+    
+
+    var headingEl = $('<h2>');
+    var movieTitle = resultsArr.Title;
+    headingEl.attr("class", "heading");
+    headingEl.text(movieTitle)
+
+    var posterEl = $('<img>');
+    var moviePoster = resultsArr.Poster;
+    posterEl.attr("class", "poster");
+    posterEl.attr("src",  moviePoster);
+
+    var yearEl = $('<h3>');
+    var movieYear = resultsArr.Year;
+    yearEl.attr("class", "year");
+    yearEl.text("(" + movieYear + ")")
+
+    $(".results").append(cardEl);
+    cardEl.append(headingEl);
+    cardEl.append(posterEl);
+    cardEl.append(yearEl);
+
+
+    // console.log (movieTitle);
+    // console.log (moviePoster);
+    // console.log (movieYear);
+    // console.log (movieId);
+
+    }
+
+    // displayResults(response)
+
 });
 })
 
- function displayResults(response) {
-    var movie = response.Search[0];
-    var movieDiv = $(".movie-card");
+//  function displayResults(response) {
+//     var movie = response.Search[0];
+//     var movieDiv = $(".movie-card");
  
 
-var movieCard = movie.imdbID
-$("h1").text(movieCard).appendto(movieDiv);
-}
+// var movieCard = movie.imdbID
+// $("h1").text(movieCard).appendto(movieDiv);
+// }
