@@ -1,6 +1,47 @@
+* {
+    /* background-color: #3a4f5b; */
+    margin: 0;
+    width: 100%;
+    /* padding: 1rem; */
+}
+body {
+    color: #fff;
+    font-family: sans-serif;
+    font-style: 1rem;
+    line-height: 1.5;
+    min-block-size: 100vh;
+    background-color: #3a4f5b;
+  }
+/* p {
+    font-size: 0.875rem;
+    font-weight: 400;
+    margin: 0;
+} */
 .title-card {
     background-color: gray;
     text-align: center;
     color: white;
-    font-size: xx-large;
+    /* font-size: xx-large; */
 }
+
+.results {
+    display: grid;
+    grid-gap: 3em 2em;
+    grid-template-columns: repeat(auto-fill, minmax(12em, 1fr));
+    list-style: none;
+    /* margin: 1rem; */
+    padding: 2rem;
+  }
+
+  .content {
+    font-size: 11px;
+    font-weight: 400;
+    letter-spacing: 1px;
+    margin: 0;
+    padding: 5px;
+    height: max-content;
+  }
+
+  .button {
+    color: #3a4f5b;
+  }
