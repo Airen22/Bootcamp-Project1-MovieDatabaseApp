@@ -1,7 +1,6 @@
 var movieAPI = "http://movie-database-alternative.p.rapidapi.com"
 
 $(".search-btn").on('click', function (event) {
-    $(".results").empty();
     var searchField = $(".search-input").val();
     localStorage.setItem("Search", searchField);
 searchTerm = localStorage.getItem("Seach")
@@ -27,34 +26,30 @@ $.ajax(settings).done(function (response) {
 
     var cardEl = $('<button>'); 
     var cardId = resultsArr.imdbID;
-    cardEl.attr("class", "card");
+    cardEl.attr("class", "movie-card");
     cardEl.attr("id", cardId)
+    
+
+    var headingEl = $('<h2>');
+    var movieTitle = resultsArr.Title;
+    headingEl.attr("class", "heading");
+    headingEl.text(movieTitle)
 
     var posterEl = $('<img>');
     var moviePoster = resultsArr.Poster;
     posterEl.attr("class", "poster");
     posterEl.attr("src",  moviePoster);
-    
-    var contentEl = $('<div>');
-   contentEl.attr("class", "content");
 
-    var titleEl = $('<p>');
-    var movieTitle = resultsArr.Title;
-    titleEl.attr("class", "heading");
-    titleEl.text(movieTitle)
-
-
-
-    var yearEl = $('<p>');
+    var yearEl = $('<h3>');
     var movieYear = resultsArr.Year;
     yearEl.attr("class", "year");
     yearEl.text("(" + movieYear + ")")
 
     $(".results").append(cardEl);
     cardEl.append(posterEl);
-    cardEl.append(contentEl);
-    contentEl.append(titleEl)
-    contentEl.append(yearEl);
+    cardEl.append(headingEl);
+    cardEl.append(yearEl);
+
 
 
     // console.log (movieTitle);
