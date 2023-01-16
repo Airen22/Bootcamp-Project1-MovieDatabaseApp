@@ -1,12 +1,11 @@
 var movieAPI = "http://movie-database-alternative.p.rapidapi.com"
 
+
 $(".search-btn").on('click', function (event) {
-$(".results").empty();
-$(".selection").empty();
-var searchField = $(".search-input").val();
-localStorage.setItem("Search", searchField);
-searchTerm = localStorage.getItem("Seach");
-var uriComponent = searchField.replace(/ /g, "%20");
+    var searchField = $(".search-input").val();
+    localStorage.setItem("Search", searchField);
+searchTerm = localStorage.getItem("Seach")
+var uriComponent = searchField.replace(/ /g, "%20")
 console.log(uriComponent)
 
 
@@ -149,12 +148,3 @@ $(".movie-card").on('click', function(event) {
 // var movieCard = movie.imdbID
 // $("h1").text(movieCard).appendto(movieDiv);
 // }
-
-// get $(.heading) value
-// convert to ytUri (so it has a "+" symbol between each word)
-// run pull request with rootapi + ytUri + $(.year) + "trailer"
-// 
-
-
-
-})
