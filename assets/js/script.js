@@ -62,11 +62,13 @@ $.ajax(settings).done(function (response) {
     // displayResults(response)
 $(".movie-card").on('click', function(event) {
     var imdbID = $(this).attr("id")
-    console.log("button clicked" + imdbID);
+    localStorage.setItem("imdbID", imdbID);
+    $(".selection").empty();
+    
     const settings = {
         "async": true,
         "crossDomain": true,
-        "url": "https://movie-database-alternative.p.rapidapi.com/?r=json&i=" + imdbID,
+        "url": "https://movie-database-alternative.p.rapidapi.com/?r=json&i=" + localStorage.getItem("imdbID"),
         "method": "GET",
         "headers": {
             "X-RapidAPI-Key": "3336923f29msh6e1151a1f7d3df5p17b980jsna4e22f0b6a1a",
@@ -76,12 +78,59 @@ $(".movie-card").on('click', function(event) {
     
     $.ajax(settings).done(function (response) {
         console.log(response);
-        var runTime = response.Runtime;
+
+        var selTitleEl = $('<h2>');
+        var title = response.Title;
+        selTitleEl.attr("class", "selTitle");
+        selTitleEl.text(title)
+        $(".selection").append(selTitleEl);
+
+
+        var subtextEl = $("<div>");
+        subtextEl.attr("class", "subtext");
+        $(".selection").append(subtextEl);
+
+        var selYearEl = $("<p>");
+        var year = response.Year;
+        selYearEl.attr("class", "selYear");
+        selYearEl.text("(" + year + ")");
+        $(".subtext").append(selYearEl);
+
+        var selRatedEl = $('<p>');
         var rated = response.Rated;
+        selRatedEl.attr("class", "selRated");
+        selRatedEl.text(rated);
+        $(".subtext").append(selRatedEl);
+
+        var selRunTimeEl = $('<p>');
+        var runTime = response.Runtime;
+        selRunTimeEl.attr("class", "selRunTime");
+        selRunTimeEl.text(runTime);
+        $(".subtext").append(selRunTimeEl);
+
+        var selPlotEl = $('<p>');
+        var plot = response.Plot;
+        selPlotEl.attr("class", "selPlot");
+        selPlotEl.text(plot);
+        $(".selection").append(selPlotEl);
+
+        var selDirectorEl = $('<p>');
         var director = response.Director;
+        selDirectorEl.attr("class", "selDirector");
+        selDirectorEl.text("Director: " + director);
+        $(".selection").append(selDirectorEl);
+        
+        var selWriterEl = $('<p>');
         var writer = response.Writer;
+        selWriterEl.attr("class", "selWriter");
+        selWriterEl.text("Writer: " + writer);
+        $(".selection").append(selWriterEl);
+
+        var selActorsEl = $('<p>');
         var actors = response.Actors;
-        var plot = response.plot;
+        selActorsEl.attr("class", "selActor");
+        selActorsEl.text("Actors: " + actors);
+        $(".selection").append(selActorsEl);
         
     });
 })
