@@ -147,4 +147,4 @@ $(".movie-card").on('click', function(event) {
 
 // var movieCard = movie.imdbID
 // $("h1").text(movieCard).appendto(movieDiv);
-// }
+});
