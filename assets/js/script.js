@@ -2,10 +2,12 @@ var movieAPI = "http://movie-database-alternative.p.rapidapi.com"
 
 
 $(".search-btn").on('click', function (event) {
-    var searchField = $(".search-input").val();
-    localStorage.setItem("Search", searchField);
-searchTerm = localStorage.getItem("Seach")
-var uriComponent = searchField.replace(/ /g, "%20")
+$(".results").empty();
+$(".selection").empty();
+var searchField = $(".search-input").val();
+localStorage.setItem("Search", searchField);
+searchTerm = localStorage.getItem("Seach");
+var uriComponent = searchField.replace(/ /g, "%20");
 console.log(uriComponent)
 
 
