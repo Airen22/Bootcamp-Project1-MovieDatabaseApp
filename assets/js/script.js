@@ -24,9 +24,9 @@ $.ajax(settings).done(function (response) {
     var resultsArr = response.Search[i];
     // console.log(resultsArr.Title); //returns [0] of results
 
-    var cardEl = $('<div>'); 
+    var cardEl = $('<button>'); 
     var cardId = resultsArr.imdbID;
-    cardEl.attr("class", "card");
+    cardEl.attr("class", "movie-card");
     cardEl.attr("id", cardId)
     
 
@@ -46,9 +46,10 @@ $.ajax(settings).done(function (response) {
     yearEl.text("(" + movieYear + ")")
 
     $(".results").append(cardEl);
-    cardEl.append(headingEl);
     cardEl.append(posterEl);
+    cardEl.append(headingEl);
     cardEl.append(yearEl);
+
 
 
     // console.log (movieTitle);
@@ -71,3 +72,8 @@ $.ajax(settings).done(function (response) {
 // var movieCard = movie.imdbID
 // $("h1").text(movieCard).appendto(movieDiv);
 // }
+
+// get $(.heading) value
+// convert to ytUri (so it has a "+" symbol between each word)
+// run pull request with rootapi + ytUri + $(.year) + "trailer"
+// 

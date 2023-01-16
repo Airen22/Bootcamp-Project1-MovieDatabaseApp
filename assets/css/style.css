@@ -1,6 +1,60 @@
+body {
+    background-color: #3a4f5b;
+    color: #fff;
+    font-family: sans-serif;
+    font-style: 1rem;
+    line-height: 1.5;
+    margin: 0;
+    min-block-size: 100vh;
+  }
+
+  img {
+    height: 17rem;
+    border-radius: 10px;
+    box-shadow: 0 0 1em rgb(0 0 0 / 50%);
+  }
+.results {
+    display: grid;
+    grid-gap: 3em 2em;
+    grid-template-columns: repeat(auto-fill, minmax(12em, 1fr));
+    list-style: none;
+    margin: 1rem;
+    padding: 0;
+}
+
+.movie-card {
+    position: relative;
+    background-color: #3a4f5b;
+    padding: 1rem;
+    border: #3a4f5b;
+    
+}
+
+.heading {
+    color: whitesmoke;
+    letter-spacing: 2px;
+    font-size: 10px;
+}
+
+.poster {
+    box-shadow: 0 0 1em rgb(0 0 0 / 50%);
+    margin-bottom: 0.5em;
+}
+
+img {
+    height: auto;
+    max-width: 100%;
+    vertical-align: middle;
+}
+.year {
+    color: whitesmoke;
+    letter-spacing: 2px;
+    font-size: 10px;
+}
 .title-card {
     background-color: gray;
     text-align: center;
     color: white;
     font-size: xx-large;
 }
+
