@@ -60,9 +60,34 @@ $.ajax(settings).done(function (response) {
     }
 
     // displayResults(response)
+$(".movie-card").on('click', function(event) {
+    var imdbID = $(this).attr("id")
+    console.log("button clicked" + imdbID);
+    const settings = {
+        "async": true,
+        "crossDomain": true,
+        "url": "https://movie-database-alternative.p.rapidapi.com/?r=json&i=" + imdbID,
+        "method": "GET",
+        "headers": {
+            "X-RapidAPI-Key": "3336923f29msh6e1151a1f7d3df5p17b980jsna4e22f0b6a1a",
+            "X-RapidAPI-Host": "movie-database-alternative.p.rapidapi.com"
+        }
+    };
+    
+    $.ajax(settings).done(function (response) {
+        console.log(response);
+        var runTime = response.Runtime;
+        var rated = response.Rated;
+        var director = response.Director;
+        var writer = response.Writer;
+        var actors = response.Actors;
+        var plot = response.plot;
+        
+    });
+})
 
 });
-})
+
 
 //  function displayResults(response) {
 //     var movie = response.Search[0];
@@ -77,3 +102,7 @@ $.ajax(settings).done(function (response) {
 // convert to ytUri (so it has a "+" symbol between each word)
 // run pull request with rootapi + ytUri + $(.year) + "trailer"
 // 
+
+
+
+})
