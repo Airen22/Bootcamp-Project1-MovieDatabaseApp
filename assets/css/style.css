@@ -21,7 +21,10 @@ body {
     margin: 1rem;
     padding: 0;
 }
-
+.expand-selection {
+    grid-row: 2/-1;
+    grid-column: 1/4;
+}
 .movie-card {
     position: relative;
     background-color: #3a4f5b;
@@ -56,4 +59,6 @@ img {
     color: white;
     font-size: xx-large;
 }
+
+
 
