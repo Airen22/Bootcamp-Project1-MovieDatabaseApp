@@ -15,7 +15,7 @@ body {
   }
 .results {
     display: grid;
-    grid-gap: 3em 2em;
+    grid-gap:  3em 2em;
     grid-template-columns: repeat(auto-fill, minmax(12em, 1fr));
     list-style: none;
     margin: 1rem;
@@ -24,6 +24,8 @@ body {
 .expand-selection {
     grid-row: 2/-1;
     grid-column: 1/4;
+    
+    
 }
 .movie-card {
     position: relative;
