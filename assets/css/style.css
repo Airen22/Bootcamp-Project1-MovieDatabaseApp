@@ -27,7 +27,9 @@ img {
     grid-gap: 3em 2em;
     grid-template-columns: repeat(auto-fill, minmax(12em, 1fr));
     list-style: none;
-    margin: 1rem;
+    margin-top: 1rem;
+    margin-left: 10rem;
+    margin-right: 10rem;
     padding: 0;
 }
 /* .expand-selection {
