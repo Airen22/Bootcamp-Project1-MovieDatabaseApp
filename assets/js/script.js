@@ -53,23 +53,14 @@ $.ajax(settings).done(function (response) {
     cardEl.append(headingEl);
     cardEl.append(yearEl);
 
-
-
-    // console.log (movieTitle);
-    // console.log (moviePoster);
-    // console.log (movieYear);
-    // console.log (movieId);
-
     }
 
-    // displayResults(response)
 $(".movie-card").on('click', function(event) {
     var imdbID = $(this).attr("id")
     localStorage.setItem("imdbID", imdbID);
     $(".selection-poster").empty();
     $(".movie-info").empty();
     $(".yt-video").empty();
-    // $(".yt-video").attr("class", ".yt-video")
     
     const settings = {
         "async": true,
@@ -177,22 +168,5 @@ function loadYT() {
 })
 
 });
-
-
-//  function displayResults(response) {
-//     var movie = response.Search[0];
-//     var movieDiv = $(".movie-card");
- 
-
-// var movieCard = movie.imdbID
-// $("h1").text(movieCard).appendto(movieDiv);
-// }
-
-// get $(.heading) value
-// convert to ytUri (so it has a "+" symbol between each word)
-// run pull request with rootapi + ytUri + $(.year) + "trailer"
-// 
-
-
 
 })

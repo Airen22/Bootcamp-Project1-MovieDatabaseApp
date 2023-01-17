@@ -11,6 +11,7 @@ body {
 header {
     padding: 1rem;
 }
+
 img {
     height: 17rem;
     border-radius: 10px;
@@ -84,6 +85,3 @@ img {
 .display {
     display: block;
 }
-
-
-
