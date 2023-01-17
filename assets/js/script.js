@@ -2,7 +2,9 @@ var movieAPI = "http://movie-database-alternative.p.rapidapi.com"
 
 $(".search-btn").on('click', function (event) {
 $(".results").empty();
-$(".selection").empty();
+$(".selection-poster").empty();
+$(".movie-info").empty();
+$(".trailer").empty();
 var searchField = $(".search-input").val();
 localStorage.setItem("Search", searchField);
 searchTerm = localStorage.getItem("Seach");
@@ -66,7 +68,9 @@ $.ajax(settings).done(function (response) {
 $(".movie-card").on('click', function(event) {
     var imdbID = $(this).attr("id")
     localStorage.setItem("imdbID", imdbID);
-    $(".selection").empty();
+    $(".selection-poster").empty();
+    $(".movie-info").empty();
+    $(".trailer").empty();
     
     const settings = {
         "async": true,
@@ -81,33 +85,41 @@ $(".movie-card").on('click', function(event) {
     
     $.ajax(settings).done(function (response) {
         console.log(response);
+// add selected movie poster image
+        var selPosterEl = $("<img>");
+        var selPosterUrl = response.Poster;
+        selPosterEl.attr("class", "poster-img");
+        selPosterEl.attr("src", selPosterUrl);
+        $(".selection-poster").append(selPosterEl)
+        ;
 
+// add selected movie info 
         var selTitleEl = $('<h2>');
         var title = response.Title;
         selTitleEl.attr("class", "selTitle");
         selTitleEl.text(title)
-        $(".selection").append(selTitleEl);
+        $(".movie-info").append(selTitleEl);
 
 
         var subtextEl = $("<div>");
-        subtextEl.attr("class", "subtext");
-        $(".selection").append(subtextEl);
+        subtextEl.attr("class", "columns subtext");
+        $(".movie-info").append(subtextEl);
 
         var selYearEl = $("<p>");
         var year = response.Year;
-        selYearEl.attr("class", "selYear");
+        selYearEl.attr("class", "column is-one-fifth selYear");
         selYearEl.text("(" + year + ")");
         $(".subtext").append(selYearEl);
 
         var selRatedEl = $('<p>');
         var rated = response.Rated;
-        selRatedEl.attr("class", "selRated");
+        selRatedEl.attr("class", "column is-one-fifth selRated");
         selRatedEl.text(rated);
         $(".subtext").append(selRatedEl);
 
         var selRunTimeEl = $('<p>');
         var runTime = response.Runtime;
-        selRunTimeEl.attr("class", "selRunTime");
+        selRunTimeEl.attr("class", "column is-one-fifth selRunTime");
         selRunTimeEl.text(runTime);
         $(".subtext").append(selRunTimeEl);
 
@@ -115,25 +127,25 @@ $(".movie-card").on('click', function(event) {
         var plot = response.Plot;
         selPlotEl.attr("class", "selPlot");
         selPlotEl.text(plot);
-        $(".selection").append(selPlotEl);
+        $(".movie-info").append(selPlotEl);
 
         var selDirectorEl = $('<p>');
         var director = response.Director;
         selDirectorEl.attr("class", "selDirector");
         selDirectorEl.text("Director: " + director);
-        $(".selection").append(selDirectorEl);
+        $(".movie-info").append($("<br>")).append(selDirectorEl);
         
         var selWriterEl = $('<p>');
         var writer = response.Writer;
         selWriterEl.attr("class", "selWriter");
         selWriterEl.text("Writer: " + writer);
-        $(".selection").append(selWriterEl);
+        $(".movie-info").append(selWriterEl);
 
         var selActorsEl = $('<p>');
         var actors = response.Actors;
         selActorsEl.attr("class", "selActor");
         selActorsEl.text("Actors: " + actors);
-        $(".selection").append(selActorsEl);
+        $(".movie-info").append(selActorsEl);
         
     });
 })
