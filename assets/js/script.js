@@ -6,8 +6,6 @@ $(".selection-poster").empty();
 $(".movie-info").empty();
 $(".yt-video").attr("class", "yt-video")
 var searchField = $(".search-input").val();
-localStorage.setItem("Search", searchField);
-searchTerm = localStorage.getItem("Seach");
 var uriComponent = searchField.replace(/ /g, "%20");
 console.log(uriComponent)
 
