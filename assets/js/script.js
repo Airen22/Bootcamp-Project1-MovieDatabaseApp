@@ -2,10 +2,10 @@ var movieAPI = "http://movie-database-alternative.p.rapidapi.com"
 
 $(".search-btn").on('click', function (event) {
 $(".results").empty();
-$(".selection").empty();
+$(".selection-poster").empty();
+$(".movie-info").empty();
+$(".yt-video").attr("class", "yt-video")
 var searchField = $(".search-input").val();
-localStorage.setItem("Search", searchField);
-searchTerm = localStorage.getItem("Seach");
 var uriComponent = searchField.replace(/ /g, "%20");
 console.log(uriComponent)
 
@@ -53,20 +53,14 @@ $.ajax(settings).done(function (response) {
     cardEl.append(headingEl);
     cardEl.append(yearEl);
 
-
-
-    // console.log (movieTitle);
-    // console.log (moviePoster);
-    // console.log (movieYear);
-    // console.log (movieId);
-
     }
 
-    // displayResults(response)
 $(".movie-card").on('click', function(event) {
     var imdbID = $(this).attr("id")
     localStorage.setItem("imdbID", imdbID);
-    $(".selection").empty();
+    $(".selection-poster").empty();
+    $(".movie-info").empty();
+    $(".yt-video").empty();
     
     const settings = {
         "async": true,
@@ -81,33 +75,41 @@ $(".movie-card").on('click', function(event) {
     
     $.ajax(settings).done(function (response) {
         console.log(response);
+// add selected movie poster image
+        var selPosterEl = $("<img>");
+        var selPosterUrl = response.Poster;
+        selPosterEl.attr("class", "poster-img");
+        selPosterEl.attr("src", selPosterUrl);
+        $(".selection-poster").append(selPosterEl)
+        ;
 
+// add selected movie info 
         var selTitleEl = $('<h2>');
         var title = response.Title;
         selTitleEl.attr("class", "selTitle");
         selTitleEl.text(title)
-        $(".selection").append(selTitleEl);
+        $(".movie-info").append(selTitleEl);
 
 
         var subtextEl = $("<div>");
-        subtextEl.attr("class", "subtext");
-        $(".selection").append(subtextEl);
+        subtextEl.attr("class", "columns subtext");
+        $(".movie-info").append(subtextEl);
 
         var selYearEl = $("<p>");
         var year = response.Year;
-        selYearEl.attr("class", "selYear");
+        selYearEl.attr("class", "column is-one-fifth selYear");
         selYearEl.text("(" + year + ")");
         $(".subtext").append(selYearEl);
 
         var selRatedEl = $('<p>');
         var rated = response.Rated;
-        selRatedEl.attr("class", "selRated");
+        selRatedEl.attr("class", "column is-one-fifth selRated");
         selRatedEl.text(rated);
         $(".subtext").append(selRatedEl);
 
         var selRunTimeEl = $('<p>');
         var runTime = response.Runtime;
-        selRunTimeEl.attr("class", "selRunTime");
+        selRunTimeEl.attr("class", "column is-one-fifth selRunTime");
         selRunTimeEl.text(runTime);
         $(".subtext").append(selRunTimeEl);
 
@@ -115,46 +117,56 @@ $(".movie-card").on('click', function(event) {
         var plot = response.Plot;
         selPlotEl.attr("class", "selPlot");
         selPlotEl.text(plot);
-        $(".selection").append(selPlotEl);
+        $(".movie-info").append(selPlotEl);
 
         var selDirectorEl = $('<p>');
         var director = response.Director;
         selDirectorEl.attr("class", "selDirector");
         selDirectorEl.text("Director: " + director);
-        $(".selection").append(selDirectorEl);
+        $(".movie-info").append($("<br>")).append(selDirectorEl);
         
         var selWriterEl = $('<p>');
         var writer = response.Writer;
         selWriterEl.attr("class", "selWriter");
         selWriterEl.text("Writer: " + writer);
-        $(".selection").append(selWriterEl);
+        $(".movie-info").append(selWriterEl);
 
         var selActorsEl = $('<p>');
         var actors = response.Actors;
         selActorsEl.attr("class", "selActor");
         selActorsEl.text("Actors: " + actors);
-        $(".selection").append(selActorsEl);
+        $(".movie-info").append(selActorsEl);
         
+        localStorage.setItem("SelectedTitle", title + " " + year)
+        loadYT()
     });
+function loadYT() {
+
+
+    var ytUriComponent = localStorage.getItem("SelectedTitle").replace(/ /g, "%20")
+    console.log(ytUriComponent)
+    const settings = {
+        "async": true,
+        "crossDomain": true,
+        "url": "https://youtube-search-results.p.rapidapi.com/youtube-search/?q=" + ytUriComponent + "%20trailer",
+        "method": "GET",
+        "headers": {
+            "X-RapidAPI-Key": "3336923f29msh6e1151a1f7d3df5p17b980jsna4e22f0b6a1a",
+            "X-RapidAPI-Host": "youtube-search-results.p.rapidapi.com"
+        }
+    };
+    
+    $.ajax(settings).done(function (response) {
+        console.log(response);
+        var ytVideo = response.items[0].id;
+        console.log(ytVideo);
+        $(".yt-video").attr("class", "yt-video display")
+        $(".yt-video").attr("src", "https://www.youtube.com/embed/" + ytVideo);
+    });
+
+}
 })
 
 });
-
-
-//  function displayResults(response) {
-//     var movie = response.Search[0];
-//     var movieDiv = $(".movie-card");
- 
-
-// var movieCard = movie.imdbID
-// $("h1").text(movieCard).appendto(movieDiv);
-// }
-
-// get $(.heading) value
-// convert to ytUri (so it has a "+" symbol between each word)
-// run pull request with rootapi + ytUri + $(.year) + "trailer"
-// 
-
-
 
 })
