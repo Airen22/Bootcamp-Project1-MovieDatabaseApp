@@ -141,6 +141,29 @@ $(".movie-card").on('click', function(event) {
 
 });
 
+var ytAPI = "youtube-search-results.p.rapidapi.com"
+
+$(".movie-card-btn").click(function(){
+    $.post("https://youtube-search-results.p.rapidapi.com/youtube-search/?q=batman" + $(".heading") + "Trailer", {
+        url: "title"
+    });
+
+
+});
+const setting = {
+	"async": true,
+	"crossDomain": true,
+	"url": "https://youtube-search-results.p.rapidapi.com/youtube-search/?q=batman" + $(".heading") + "Trailer",
+	"method": "GET",
+	"headers": {
+		"X-RapidAPI-Key": "a6817d24c5mshdc18e1cdfe295e2p121ee4jsn9610e343b6ef",
+		"X-RapidAPI-Host": "youtube-search-results.p.rapidapi.com"
+	}
+};
+
+$.ajax(settings).done(function (response) {
+	console.log(response);
+});
 
 //  function displayResults(response) {
 //     var movie = response.Search[0];
