@@ -61,11 +61,19 @@ img {
 }
 
 .selTitle {
-    font-size: xxx-large;
+    font-size: xx-large;
 }
 
 .selection {
     margin:2rem;
+}
+
+.yt-video {
+    display:none;
+}
+
+.display {
+    display: block;
 }
 
 

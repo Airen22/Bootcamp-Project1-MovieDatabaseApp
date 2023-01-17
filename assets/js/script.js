@@ -4,7 +4,7 @@ $(".search-btn").on('click', function (event) {
 $(".results").empty();
 $(".selection-poster").empty();
 $(".movie-info").empty();
-$(".trailer").empty();
+$(".yt-video").attr("class", "yt-video")
 var searchField = $(".search-input").val();
 localStorage.setItem("Search", searchField);
 searchTerm = localStorage.getItem("Seach");
@@ -70,7 +70,8 @@ $(".movie-card").on('click', function(event) {
     localStorage.setItem("imdbID", imdbID);
     $(".selection-poster").empty();
     $(".movie-info").empty();
-    $(".trailer").empty();
+    $(".yt-video").empty();
+    // $(".yt-video").attr("class", ".yt-video")
     
     const settings = {
         "async": true,
@@ -147,7 +148,34 @@ $(".movie-card").on('click', function(event) {
         selActorsEl.text("Actors: " + actors);
         $(".movie-info").append(selActorsEl);
         
+        localStorage.setItem("SelectedTitle", title + " " + year)
+        loadYT()
     });
+function loadYT() {
+
+
+    var ytUriComponent = localStorage.getItem("SelectedTitle").replace(/ /g, "%20")
+    console.log(ytUriComponent)
+    const settings = {
+        "async": true,
+        "crossDomain": true,
+        "url": "https://youtube-search-results.p.rapidapi.com/youtube-search/?q=" + ytUriComponent + "%20trailer",
+        "method": "GET",
+        "headers": {
+            "X-RapidAPI-Key": "3336923f29msh6e1151a1f7d3df5p17b980jsna4e22f0b6a1a",
+            "X-RapidAPI-Host": "youtube-search-results.p.rapidapi.com"
+        }
+    };
+    
+    $.ajax(settings).done(function (response) {
+        console.log(response);
+        var ytVideo = response.items[0].id;
+        console.log(ytVideo);
+        $(".yt-video").attr("class", "yt-video display")
+        $(".yt-video").attr("src", "https://www.youtube.com/embed/" + ytVideo);
+    });
+
+}
 })
 
 });
