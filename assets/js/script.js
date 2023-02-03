@@ -16,7 +16,7 @@ const settings = {
 	"url": "https://movie-database-alternative.p.rapidapi.com" + "/?s=" + uriComponent + "&r=json",
 	"method": "GET",
 	"headers": {
-		"X-RapidAPI-Key": "3336923f29msh6e1151a1f7d3df5p17b980jsna4e22f0b6a1a",
+		"X-RapidAPI-Key": "",
 		"X-RapidAPI-Host": "movie-database-alternative.p.rapidapi.com"
 	}
 };
@@ -68,7 +68,7 @@ $(".movie-card").on('click', function(event) {
         "url": "https://movie-database-alternative.p.rapidapi.com/?r=json&i=" + localStorage.getItem("imdbID"),
         "method": "GET",
         "headers": {
-            "X-RapidAPI-Key": "3336923f29msh6e1151a1f7d3df5p17b980jsna4e22f0b6a1a",
+            "X-RapidAPI-Key": "",
             "X-RapidAPI-Host": "movie-database-alternative.p.rapidapi.com"
         }
     };
@@ -151,7 +151,7 @@ function loadYT() {
         "url": "https://youtube-search-results.p.rapidapi.com/youtube-search/?q=" + ytUriComponent + "%20trailer",
         "method": "GET",
         "headers": {
-            "X-RapidAPI-Key": "3336923f29msh6e1151a1f7d3df5p17b980jsna4e22f0b6a1a",
+            "X-RapidAPI-Key": "",
             "X-RapidAPI-Host": "youtube-search-results.p.rapidapi.com"
         }
     };
